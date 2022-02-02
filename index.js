@@ -354,7 +354,7 @@ function createBot() {
     const dirt = new Item(2,0)
     const delay = require('delay')
 
-    Liberycraft
+    //Liberycraft
     bot.on('messagestr', async (msg) => {
     /*    if (!msg.includes(":")){
             

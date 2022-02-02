@@ -28,7 +28,7 @@ function createBot() {
     //Batecastroso bateman
 
     var bot = mineflayer.createBot({
-        host: "Mc.samsara.net",
+        host: "Mc.samsaracraft.net",
         //host: "localhost",
         username: "dexned",
         plugins: [AutoAuth, pathfinder],

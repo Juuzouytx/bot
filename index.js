@@ -31,12 +31,12 @@ function createBot() {
         host: "Mc.samsaracraft.net",
         //host: "localhost",
         username: "dexned",
-        plugins: [AutoAuth, pathfinder],
+        /*plugins: [AutoAuth, pathfinder],
         AutoAuth: {
             logging: true,
             password: 'tyler12',
             ignoreRepeat: true
-        },
+        },*/
         //port: 53264
         
     })
@@ -354,11 +354,12 @@ function createBot() {
     const dirt = new Item(2,0)
     const delay = require('delay')
 
-    /*Liberycraft
+    Liberycraft
     bot.on('messagestr', async (msg) => {
-        if (!msg.includes(":")){
-            console.warn(msg)
-        }
+    /*    if (!msg.includes(":")){
+            
+        }*/
+        console.warn(msg)
         //Return if msg don't have extra property
 
         if(!msg) return
@@ -371,7 +372,7 @@ function createBot() {
             //mineflayerViewer(bot, { firstPerson: true, port: 3000 })
             bot.chat("/login tyler12");            
         }
-    })*/
+    })
 /*
     bot.on('windowOpen', (window) => {
         bot.equip(Item.toNotch(dirt),"hand")

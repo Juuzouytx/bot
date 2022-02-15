@@ -1,4 +1,6 @@
 mineflayer = require("mineflayer")
+const repl = require('repl')
+
 const navigatePlugin = require('mineflayer-navigate')(mineflayer);
 const mineflayerViewer = require('prismarine-viewer').mineflayer
 
@@ -29,6 +31,7 @@ function createBot() {
 
     var bot = mineflayer.createBot({
         host: "Mc.samsaracraft.net",
+        //host: "librecraft.com",
         //host: "localhost",
         username: "dexned",
         /*plugins: [AutoAuth, pathfinder],
@@ -325,6 +328,35 @@ function createBot() {
         }
     }
 
+    function nearestEntity(type) {
+        var id, entity, dist;
+        var best = null;
+        var bestDistance = null;
+        for(id in bot.entities) {
+          entity = bot.entities[id];
+          if(type && entity.type !== type) continue;
+          if(entity === bot.entity) continue;
+          dist = bot.entity.position.distanceTo(entity.position);
+          if(!best || dist < bestDistance) {
+            best = entity;
+            bestDistance = dist;
+          }
+        }
+        return best;
+      }
+    
+/*      
+    bot.on('login', function() {
+    
+        sleep(2000).then(() => {
+            var entity=nearestEntity();
+            console.log(entity);
+            bot.activateEntity(entity);
+        })
+        //console.log(casl);
+    })
+*/
+
     function lookAPlayer(username) {
         const playerEntity = bot.players[username].entity
 
@@ -353,15 +385,51 @@ function createBot() {
     const Item=require("prismarine-item")("1.8");
     const dirt = new Item(2,0)
     const delay = require('delay')
+    
+    bot.on("title", (text) =>{ 
+        console.log(text);
+    })
 
-    //Liberycraft
+    /*bot.on('message', (msg) => {
+        console.log(msg.translate)
+        if (msg.translate === 'multiplayer.player.joined'){
+            bot.chat("/register tyler12 tyler12")
+        }
+    })*/
+
+
+
+    bot.on('spawn' , async()=> { 
+        sleep(2000)       
+    })
+    
+    
     bot.on('messagestr', async (msg) => {
-    /*    if (!msg.includes(":")){
-            
-        }*/
-        console.warn(msg)
-        //Return if msg don't have extra property
+        //if (!msg.includes(":")){
+        console.warn(msg)    
 
+        if (msg.includes('Bienvenido de vuelta a Samsara')){
+
+            const r = repl.start('> ')
+            r.context.bot = bot
+          
+            r.on('exit', () => {
+              bot.end()
+            })
+        }
+
+        /*
+        const r = repl.start('> ')
+        r.context.bot = bot
+      
+        r.on('exit', () => {
+          bot.end()
+        })*/
+
+        //}
+        
+        //Return if msg don't have extra property
+        /*
         if(!msg) return
         await sleep(1000)
         if(msg == "LIBRECRAFT » Registrate usando /register pass pass"){
@@ -370,9 +438,14 @@ function createBot() {
         }else if(msg == "LIBRECRAFT » Inicia sesión usando /login <Contraseña>"){
             console.log("Login");
             //mineflayerViewer(bot, { firstPerson: true, port: 3000 })
-            bot.chat("/login tyler12");            
+            bot.chat("/login tyler12");    
+            await sleep(4000);        
+           
         }
+        */
     })
+
+    
 /*
     bot.on('windowOpen', (window) => {
         bot.equip(Item.toNotch(dirt),"hand")

@@ -408,7 +408,7 @@ function createBot() {
         //if (!msg.includes(":")){
         console.warn(msg)    
 
-        if (msg.includes('Bienvenido de vuelta a Samsara')){
+        if (msg.includes('dexned joined the game')){
 
             const r = repl.start('> ')
             r.context.bot = bot

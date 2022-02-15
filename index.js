@@ -406,7 +406,7 @@ function createBot() {
     
     bot.on('messagestr', async (msg) => {
         //if (!msg.includes(":")){
-        console.warn(msg)    
+        //console.warn(msg)    
 
         if (msg.includes('dexned joined the game')){
 
